@@ -11,10 +11,12 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
       box-sizing:border-box;
       font-family: NanumBarunGothic, sans-serif;
+      color: ${theme.colorSet.default.mainColor};
     }
     
     body {
         margin: 0 ${theme.margin.margin_browser};
+        background-color: ${theme.colorSet.default.backgroundColor};
     }
 `;
 

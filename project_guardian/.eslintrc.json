@@ -19,7 +19,9 @@
     ],
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "linebreak-style": ["error", "windows"]
+        "react/destructuring-assignment": [1, "always"],
+        "linebreak-style": ["error", "windows"],
+        "no-unused-vars": "warn"
         //"linebreak-style": ["error", process.platform === 'prod' ? "unix" : "windows"],
     }
 }

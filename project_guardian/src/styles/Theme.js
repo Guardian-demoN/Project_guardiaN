@@ -1,4 +1,23 @@
 const pixelToRem = (size) => `${size / 16}rem`;
+
+const colorSet = {
+  default: {
+    backgroundColor: 'black',
+    mainColor: 'beige',
+    subColor: 'white',
+  },
+  royalBlue: {
+    backgroundColor: '#0c0b2e',
+    mainColor: '#f7f3b0',
+    subColor: '#e8f7b0',
+  },
+  circuitry: {
+    backgroundColor: '#072106',
+    mainColor: '#debe1f',
+    subColor: '#cfccb6',
+  },
+};
+
 // rem : root em
 // em
 const fontSizes = {
@@ -55,6 +74,7 @@ const flexbox = {
 };
 
 const theme = {
+  colorSet,
   fontSizes,
   fontWeight,
   colors,
