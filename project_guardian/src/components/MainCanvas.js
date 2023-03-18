@@ -3,39 +3,11 @@ import React, { createRef, useEffect } from 'react';
 import styled from 'styled-components';
 import * as THREE from 'three';
 import PropTypes from 'prop-types';
+import CUBE from '../cubeLib/2D';
 
 function MainCanvas(props) {
   const canvasId = 'canvas';
   useEffect(() => {
-    // console.log('render');
-    // const renderer = new THREE.WebGLRenderer();
-    // renderer.setSize(window.innerWidth, window.innerHeight);
-    // // renderer.setSize(1920, 1080);
-    // // document.body.appendChild(renderer.domElement);
-    // document.getElementById('canvas').appendChild(renderer.domElement);
-    // // canvasRef.current.appendChild(renderer.domElement);
-
-    // eslint-disable-next-line max-len
-    // const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
-    // camera.position.set(0, 0, 100);
-    // camera.lookAt(0, 0, 0);
-
-    // const scene = new THREE.Scene();
-
-    // // create a blue LineBasicMaterial
-    // const material = new THREE.LineBasicMaterial({ color: 0x0000ff });
-
-    // const points = [];
-    // points.push(new THREE.Vector3(-10, 0, 0));
-    // points.push(new THREE.Vector3(0, 10, 0));
-    // points.push(new THREE.Vector3(10, 0, 0));
-
-    // const geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-    // const line = new THREE.Line(geometry, material);
-
-    // scene.add(line);
-    // renderer.render(scene, camera);
     function init() {
       // make renderer
       const renderer = new THREE.WebGLRenderer();
@@ -67,7 +39,7 @@ function MainCanvas(props) {
         new THREE.Vector3(10, 10, 0),
       ];
 
-      let geometry = new THREE.BufferGeometry().setFromPoints(rectPoints);
+      const geometry = new THREE.BufferGeometry().setFromPoints(rectPoints);
 
       const line = new THREE.Line(geometry, material);
 
@@ -76,20 +48,13 @@ function MainCanvas(props) {
       // points.push(new THREE.Vector3(0, 10, 0));
       // points.push(new THREE.Vector3(10, 0, 0));
 
-      const curve = new THREE.CubicBezierCurve(
-        new THREE.Vector2(-20, -10),
-        new THREE.Vector2(20, -10),
-        new THREE.Vector2(-20, 10),
-        new THREE.Vector2(20, 10),
-      );
+      const p1 = new THREE.Vector2(50, 10);
+      const p2 = new THREE.Vector2(-50, -10);
 
-      const points = curve.getPoints(50);
-      geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-      const curveObject = new THREE.Line(geometry, material);
+      CUBE.drawVerticalSLine(scene, material, p1, p2);
+      CUBE.drawHorizontalSLine(scene, material, p1, p2);
 
       scene.add(line);
-      scene.add(curveObject);
       renderer.render(scene, camera);
     }
 
