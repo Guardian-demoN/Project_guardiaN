@@ -4,20 +4,21 @@ import reset from 'styled-reset';
 import theme from './Theme';
 
 const GlobalStyle = createGlobalStyle`
-    ${reset};
+  ${reset};
     
-    *{
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family: NanumBarunGothic, sans-serif;
+    color: ${theme.colorSet.default.mainColor};
+    border: 1px solid ${theme.colorSet.default.subColor};
+  }
+  
+  body {
       margin: 0;
-      padding: 0;
-      box-sizing:border-box;
-      font-family: NanumBarunGothic, sans-serif;
-      color: ${theme.colorSet.default.mainColor};
-    }
-    
-    body {
-        margin: 0 ${theme.margin.margin_browser};
-        background-color: ${theme.colorSet.default.backgroundColor};
-    }
+      font-size: 24px;
+  }
 `;
 
 export default GlobalStyle;

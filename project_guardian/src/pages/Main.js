@@ -1,15 +1,24 @@
-import React, { createRef, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import * as THREE from 'three';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import MainCanvas from '../components/MainCanvas';
+import Sidebar from '../components/Sidebar';
+// import Header from '../components/Header';
+import CompanionList from '../components/CompanionList';
 
 function Main() {
   return (
-    <PageContainer>
-      <Header />
-      <MainCanvas />
-      <Sidebar />
-    </PageContainer>
+    <Router>
+      <PageContainer>
+        {/* <Header /> */}
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<MainCanvas />} />
+          <Route path="/members" element={<CompanionList />} />
+        </Routes>
+      </PageContainer>
+    </Router>
   );
 }
 
@@ -18,22 +27,6 @@ export default Main;
 const PageContainer = styled.div`
   width: 100%;
   height: 100vh;
-`;
 
-const Header = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 5vh;
-  background-color: blue;
-`;
-
-const Sidebar = styled.aside`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20vw;
-  height: 100vh;
-  border: 1px solid black;
+  overflow: hidden;
 `;
