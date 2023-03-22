@@ -63,10 +63,10 @@ function CompanionList() {
 
     function init() {
       const geometry = new THREE.BoxGeometry(5, 5, 5);
-      const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 
       for (let i = -2; i <= 2; i += 1) {
         for (let j = -2; j <= 2; j += 1) {
+          const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
           mesh = new THREE.Mesh(geometry, material);
           mesh.position.set(10 * i, 10 * j, 0);
           scene.add(mesh);
@@ -83,20 +83,22 @@ function CompanionList() {
 
       // calculate objects intersecting the picking ray
       const intersects = raycaster.intersectObjects(scene.children);
-
+      let originColor = new THREE.Color(0x00ff00);
       if (intersects.length > 0) {
+        console.log('intersect');
+        // 겹치는데 다른 물체로 이동
         if (intersects[0].object !== currentIntersection) {
           if (currentIntersection) {
-            currentIntersection.material.color = currentIntersection.currentColor;
+            console.log('moved to exist -> another');
+            currentIntersection.material.color.set(originColor);
           }
           currentIntersection = intersects[0].object;
-          console.log(currentIntersection.material);
-          currentIntersection.currentColor = currentIntersection.material.color;
-          currentIntersection.matrix.color = new THREE.Color(1, 0, 0);
+          originColor = currentIntersection.material.color;
+          currentIntersection.material.color.set(new THREE.Color(255, 0, 0));
         }
       } else {
         if (currentIntersection) {
-          currentIntersection.material.color = currentIntersection.currentColor;
+          currentIntersection.material.color.set(originColor);
         }
         currentIntersection = null;
       }
