@@ -51,7 +51,7 @@ const SidebarComponent = styled.aside`
   height: 100vh;
   width: ${sidebarEnterWidth};
   font-size: 1rem;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 
   div{
     height: 100%;

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import * as THREE from 'three';
 
-import CUBE from '../cubeLib/2D';
+import CUBE from '../cubeLib/CUBE';
 
 function MainCanvas() {
   // three.js handler
@@ -44,7 +44,7 @@ function MainCanvas() {
 
     function init() {
       // drawing line
-      const material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+      let material = new THREE.LineBasicMaterial({ color: 0x0000ff });
 
       const p1 = new THREE.Vector2(50, 10);
       const p2 = new THREE.Vector2(-50, -10);
@@ -53,7 +53,22 @@ function MainCanvas() {
       CUBE.drawHorizontalSLine(scene, material, p1, p2);
       CUBE.drawSquare(scene, material, p1, p2);
 
-      // scene.add(line);
+      const points = [];
+
+      for (let i = 0; i < 50; i += 1) {
+        points.push(
+          new THREE.Vector2(Math.sin(i * 0.2) * Math.sin(i * 0.1) * 15 + 50, (i - 5) * 2),
+        );
+      }
+      const map = new THREE.TextureLoader().load('textures/uv_grid_opengl.jpg');
+      map.wrapT = THREE.RepeatWrapping;
+      map.wrapS = map.wrapT;
+      map.anisotropy = 16;
+      material = new THREE.MeshPhongMaterial({ map, side: THREE.DoubleSide });
+      const object = new THREE.Mesh(new THREE.LatheGeometry(points, 20), material);
+      object.position.set(-100, 0, -200);
+      scene.add(object); // scene.add(line);
+
       renderer.render(scene, camera);
     }
 

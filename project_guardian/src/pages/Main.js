@@ -6,6 +6,7 @@ import MainCanvas from '../components/MainCanvas';
 import Sidebar from '../components/Sidebar';
 // import Header from '../components/Header';
 import CompanionList from '../components/CompanionList';
+import ArticleTemplate from '../components/ArticleTemplate';
 
 function Main() {
   return (
@@ -15,6 +16,8 @@ function Main() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<MainCanvas />} />
+          <Route path="/articles/:category/:subject/:index" element={<ArticleTemplate />} />
+          <Route path="/articles" element={<ArticleTemplate />} />
           <Route path="/members" element={<CompanionList />} />
         </Routes>
       </PageContainer>
